@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Categories</title>
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h2>Food Categories</h2>
+
+<ul id="categoryList">
+  <li onclick="showProducts('burger')">Burger</li>
+  <li onclick="showProducts('sandwich')">Sandwich</li>
+  <li onclick="showProducts('pizza')">Pizza</li>
+  <li onclick="showProducts('salad')">Salad</li>
+</ul>
+
+<div id="burgerProducts" class="hidden">
+  <h3>Burger Products</h3>
+  <!-- List of burger products goes here -->
+</div>
+
+<div id="sandwichProducts" class="hidden">
+  <h3>Sandwich Products</h3>
+  <!-- List of sandwich products goes here -->
+</div>
+
+<div id="pizzaProducts" class="hidden">
+  <h3>Pizza Products</h3>
+  <!-- List of pizza products goes here -->
+</div>
+
+<div id="saladProducts" class="hidden">
+  <h3>Salad Products</h3>
+  <!-- List of salad products goes here -->
+</div>
+
+<script>
+function showProducts(category) {
+    // Hide all product lists
+    document.querySelectorAll('.hidden').forEach(item => {
+        item.classList.add('hidden');
+    });
+
+    // Show the product list for the selected category
+    document.getElementById(category + 'Products').classList.remove('hidden');
+}
+
+
+</script>
+
+</body>
+</html>

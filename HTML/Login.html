@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            /* Adjust body styles directly */
+            background-image: url('../ASSETS/lg-bg1.jpg');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            /* Adjust container width and height */
+            width: 90%;
+            max-width: 600px;
+            /* Example max width for responsiveness */
+            margin: 0 auto;
+            /* Center the container */
+            padding: 20px;
+            margin-top: 170px;
+            /* Example margin for spacing from the top */
+        }
+    </style>
+    <script>
+        var SignUpdata
+        function getSignInData() {
+            SignUpdata = JSON.parse(localStorage.getItem("formData"));
+            console.log("signUpform Data", SignUpdata);
+        }
+        getSignInData()
+        function submitLoginform(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //for email
+            // Test the firstName and lastName against the regular expression
+            var isMatchEmail = emailPattern.test(email);
+            // If firstName or lastName doesn't match the pattern, clear their values
+            if (!isMatchEmail) {
+                document.getElementById('email').value = '';
+                alert('Enter Valid Email');
+                return false;
+            }
+            if (email == '') {
+                document.getElementById('password').value = '';
+            }
+            if (SignUpdata.email != email) {
+                alert("Entered email is not registered with us");
+                return false;
+            }
+            if (SignUpdata.password != password) {
+                alert("Entered password is wrong ,plz enter correct password");
+                return false;
+            }
+            var loginformData = {
+                email: email,
+                password: password,
+            };
+            // Example of storing data in localStorage
+            localStorage.setItem('loginformData', JSON.stringify(loginformData));
+            window.location.href = 'EntryPage.html'
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title text-center">Login</h4>
+            </div>
+            <div class="card-body" onload="getSignInData()">
+                <form id="login-form" onsubmit="submitLoginform(event)">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                            autocomplete="off" required>
+                        <div class="invalid-feedback">
+                            Enter valid email.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="password" placeholder="Enter your password"
+                            autocomplete="off" required>
+                        <div class="invalid-feedback">
+                            Enter valid password.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <a href="EntryPage.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Primary link</a>
+                        <button type="submit" class="btn btn-primary w-100" href="EntryPage.html">Login</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

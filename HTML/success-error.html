@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suceess Error</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .container {
+    text-align: center;
+    justify-content: center;
+}
+
+body {
+            /* Adjust body styles directly */
+            background-image: url('../ASSETS/bg-succ-err.jpg');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+.card-body {
+    background-color:darkgray;
+    padding: 20px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+.card{
+    width: 55%;
+    margin: auto;
+}
+
+.succ-width{
+    width: 105px;
+}
+
+.img-size{
+    width: 21px;
+}
+
+.labels-for{
+    font-size: 18px;
+    font-family: cursive;
+}
+/* .font-colour{
+    color: #f9f9f9;
+} */
+    </style>
+</head>
+<script>
+       var ordData
+        function getOrderData(){
+            ordData =JSON.parse(sessionStorage.getItem("paymentDetails")) ; 
+            console.log("ordData",ordData);
+            const demoCard = ` <div class="card-body">
+                <div><img src="../ASSETS/check.png" class="succ-width"></div>
+                
+                <h4 class="font-colour"><b>Order Summary:</b></h4>
+                <table class="table">
+                    <tr><td style="width:"25%" >Address:</td><td style="width:"20%">${ordData.address}</td></tr>
+                    <tr><td style="width:"25%" >Estimated Delivery Time:</td><td style="width:"20%">45.00 minutes</td></tr>
+                    <tr><td style="width:"25%" >Payment Method:</td><td style="width:"20%">Card</td></tr>
+                    <tr><td style="width:"25%" >Order Confirmation Number:</td><td style="width:"20%">#123456789</td></tr>
+                   
+                </table>
+               
+                <div class="labels-for font-colour"><label>For any inquiries or assistance,<br> please contact us at [Customer Support alpha@gmail.com/9874477456].</label></div>
+                <div>
+                    <img src="../ASSETS/whatsapp.png" class="img-size">  <img src="../ASSETS/instagram.png" class="img-size">
+                    </div>
+            </div>`
+          document.getElementById('success-err-data').innerHTML = demoCard
+        }
+        getOrderData()
+</script>
+<body onload="getOrderData()">
+    <div class="container">
+        <div class="card d-flex justify-content-center align-items-center mt-3" id="success-err-data">
+           
+        </div>
+        <a href="EntryPage.html">Go to Home Page</a>
+    </div>
+    
+</body>
+</html>
